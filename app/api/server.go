@@ -11,11 +11,13 @@ import (
 	"time"
 
 	"github.com/Rhiadc/ms-base-go/config"
+	"github.com/Rhiadc/ms-base-go/domain/book/services"
 	"github.com/go-chi/chi"
 )
 
 type Server struct {
-	Config config.Config
+	Config       config.Config
+	BookServices *services.Service
 }
 
 func NewServer(opts ...func(server *Server) error) (*Server, error) {
@@ -74,8 +76,9 @@ func WithConfig(appConfig config.Config) func(server *Server) error {
 	}
 }
 
-func WithService() func(server *Server) error {
+func WithService(bookServices *services.Service) func(server *Server) error {
 	return func(server *Server) error {
+		server.BookServices = bookServices
 		return nil
 	}
 }
