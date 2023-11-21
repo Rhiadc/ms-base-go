@@ -5,10 +5,20 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Rhiadc/ms-base-go/app/api/handlers"
 	"github.com/go-chi/chi"
 )
 
 func (s *Server) router(r *chi.Mux) {
+	bookHandler := handlers.NewBookHandler(s.BookServices)
+	r.Route("/book", func(r chi.Router) {
+		r.Post("/", bookHandler.CreateBook)
+		r.Get("/", bookHandler.GetBooks)
+		r.Get("/{book-id}", bookHandler.GetBook)
+		r.Delete("/{book-id}", bookHandler.DeleteBook)
+		r.Patch("/{book-id}", bookHandler.UpdateBook)
+	})
+
 	r.Get("/slow", func(w http.ResponseWriter, r *http.Request) {
 		// Simulates some hard work.
 		//
