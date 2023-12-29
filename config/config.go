@@ -8,10 +8,11 @@ import (
 )
 
 type Config struct {
-	APIPort     string
-	ENV         string
-	ServiceName string
-	Log         Log
+	APIPort          string
+	ENV              string
+	ServiceName      string
+	DBConnectionHost string
+	Log              Log
 }
 
 type Log struct {
@@ -24,6 +25,7 @@ func LoadEnvVars() *Config {
 	viper.AutomaticEnv()
 	viper.SetDefault("ENV", "dev")
 	viper.SetDefault("API_PORT", "8080")
+	viper.SetDefault("DB_CONNECTION_HOST", "postgres://postgres:postgres@localhost:5432")
 
 	viper.SetDefault("DEV_MODE", true)
 	viper.SetDefault("ENCODING", "json")
@@ -40,5 +42,6 @@ func LoadEnvVars() *Config {
 			DevMode:  viper.GetBool("DEV_MODE"),
 			Encoding: viper.GetString("ENCODING"),
 		},
+		DBConnectionHost: viper.GetString("DB_CONNECTION_HOST"),
 	}
 }
