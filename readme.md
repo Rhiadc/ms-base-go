@@ -1,6 +1,4 @@
-# Project Name
-
-![Project Logo](link-to-logo.png)
+# ms-base-go
 
 ## Overview
 This project is a template managed by the [infra-provision-orch](https://github.com/Rhiadc/infra-provision-orch). <br>
