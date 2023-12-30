@@ -44,7 +44,7 @@ jobs:
           ref: main
 
       - 
-        name: Set foobar to cool
+        name: Bump image tag
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i 'image.tag = ${{ github.sha }}' 'values.prod.yaml'
+          cmd: yq -i '.image.tag = ${{ github.sha }}' 'values.prod.yaml'
