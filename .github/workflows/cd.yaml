@@ -47,5 +47,4 @@ jobs:
         name: Bump image tag
         uses: mikefarah/yq@master
         with:
-          cmd: 'yq eval --in-place ".image.tag = env(GITHUB_SHA)" values.prod.yaml'
-          
+          cmd: yq -i '.image.tag = strenv(GITHUB_SHA)' values.prod.yaml
