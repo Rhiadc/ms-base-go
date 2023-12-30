@@ -23,10 +23,10 @@ jobs:
         name: Checkout configs
         uses: actions/checkout@v3
         with:
-          repository: org/configs
+          repository: Rhiadc/infra-ms-base
           token: ${{ secrets.API_TOKEN_GITHUB }}
           path: configs
-          ref: master
+          ref: main
      
       - 
         name: Test
