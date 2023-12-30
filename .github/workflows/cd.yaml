@@ -48,3 +48,20 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.image.tag = strenv(GITHUB_SHA)' values.prod.yaml
+
+          
+      - 
+        name: config git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      
+      - 
+        name: add file
+        run : |
+          git checkout -b chore/bump-docker-version
+          cd helmapi 
+          git add .
+          git commit -m "bump docker version"
+          git push -u origin chore/bump-docker-version
