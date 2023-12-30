@@ -49,6 +49,12 @@ jobs:
           VERSION=v4.2.0 
           BINARY=yq_linux_amd64
           wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&\
-          chmod +x /usr/bin/yq
-
+          chmod +x $RUNNER_WORKSPACE/yq
+          # Add the yq binary to the PATH
+          echo "PATH=$RUNNER_WORKSPACE:$PATH" >> $GITHUB_ENV
+          # Verify installation
           yq --version
+      -
+        name: test
+        run: |
+          ls
