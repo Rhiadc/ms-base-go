@@ -61,7 +61,6 @@ jobs:
         name: add file
         run : |
           git checkout -b chore/bump-docker-version
-          cd helmapi 
           git add .
           git commit -m "bump docker version"
           git push -u origin chore/bump-docker-version
